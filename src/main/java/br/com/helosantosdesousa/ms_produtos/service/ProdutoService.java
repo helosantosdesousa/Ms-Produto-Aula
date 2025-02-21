@@ -3,6 +3,7 @@ package br.com.helosantosdesousa.ms_produtos.service;
 import br.com.helosantosdesousa.ms_produtos.dto.ProdutoResponseDTO;
 import br.com.helosantosdesousa.ms_produtos.entities.Produto;
 import br.com.helosantosdesousa.ms_produtos.repositories.ProdutoRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +27,14 @@ public class ProdutoService {
     public List<ProdutoResponseDTO> findAll() {
         List<Produto> list = repository.findAll();
         return list.stream().map(ProdutoResponseDTO::new).toList();
+    }
+
+    @Transactional(readOnly = true)
+    public ProdutoResponseDTO findById(Long id){
+        Produto entity = repository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("Recurso não encontrado. Id: " + id)
+        );
+        return new ProdutoResponseDTO(entity);
     }
 
 }

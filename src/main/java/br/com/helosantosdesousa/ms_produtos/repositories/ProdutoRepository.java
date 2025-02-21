@@ -1,4 +1,4 @@
-package br.repositories;
+package br.com.helosantosdesousa.ms_produtos.repositories;
 
 import br.com.helosantosdesousa.ms_produtos.entities.Produto;
 import org.springframework.data.jpa.repository.JpaRepository;

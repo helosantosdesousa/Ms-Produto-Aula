@@ -10,7 +10,7 @@ public record ProdutoResponseDTO(
 ) {
     //converter a Entity para um DTO
     public ProdutoResponseDTO(Produto entity) {
-        this(entity.getId(),
+        this(   entity.getId(),
                 entity.getNome(),
                 entity.getDescricao(),
                 entity.getValor());
